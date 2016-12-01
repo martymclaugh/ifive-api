@@ -20,6 +20,5 @@ module V1
       warden.custom_failure!
       render json: {error: t('sessions_controller.invalid_login_attempt')}, status: :unprocessable_entity
     end
-    end
   end
 end

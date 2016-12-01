@@ -1,5 +1,5 @@
 module V1
-  class SessionSerializer < ActiveModel::SessionSerializer
+  class SessionSerializer < ActiveModel::Serializer
 
     attributes :phone_number, :token_type, :user_id, :access_token
 
@@ -10,6 +10,6 @@ module V1
     def token_type
       'Bearer'
     end
-    
+
   end
 end
