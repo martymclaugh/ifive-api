@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   def create
     if params[:user][:password] == params[:user][:password_confirmation]
       @user = User.new(user_params)
+      @phone_number = PhoneNumber.new(params[:user][:phone_number])
     else
     render json: { error: t('user_create_error') }, status: :unprocessable_entity
     end
@@ -19,6 +20,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.permit(:phone_number, :first_name, :last_name, :password, :email)
+    params.permit(:first_name, :last_name, :password, :email)
   end
 end
