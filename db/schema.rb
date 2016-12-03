@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 20161202234315) do
   enable_extension "plpgsql"
 
   create_table "phone_numbers", force: :cascade do |t|
+    t.integer  "user_id"
     t.string   "phone_number"
     t.string   "pin"
     t.boolean  "verified"
@@ -29,7 +30,6 @@ ActiveRecord::Schema.define(version: 20161202234315) do
     t.string   "access_token"
     t.string   "first_name",                          null: false
     t.string   "last_name",                           null: false
-    t.string   "phone_number",                        null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
