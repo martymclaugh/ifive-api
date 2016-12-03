@@ -4,7 +4,7 @@ class CreatePhoneNumbers < ActiveRecord::Migration[5.0]
       t.integer :user_id
       t.string :phone_number
       t.string :pin
-      t.boolean :verified
+      t.boolean :verified, default: false
 
       t.timestamps
     end
