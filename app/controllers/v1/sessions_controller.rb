@@ -3,7 +3,7 @@ module V1
     skip_before_action :authenticate_user_from_token!
 
     def create
-      @user = User.phone_numbers.find_for_database_authentication(phone_number: params[:phone_number])
+      @user = User.find(PhoneNumber.where(phone_number: params[:phone_number])[0].user_id)
       return invalid_login_attempt unless @user
 
       if @user.valid_password?(params[:password])
