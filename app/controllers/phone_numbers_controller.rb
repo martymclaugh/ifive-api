@@ -4,8 +4,6 @@ class PhoneNumbersController < ApplicationController
   end
 
   def create
-    p "shazam"
-    p params[:user_data][:user_id]
     @phone_number = PhoneNumber.find_or_create_by(phone_number: params[:phone_number])
     @phone_number.create_pin
     @phone_number.send_pin
