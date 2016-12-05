@@ -1,15 +1,23 @@
 class PhoneNumbersController < ApplicationController
-  def new
-    @phone_number = PhoneNumbers.new
-  end
+  skip_before_action :authenticate_user_from_token!
 
   def create
-    @phone_number = PhoneNumber.find_or_create_by(phone_number: params[:phone_number])
-    @phone_number.create_pin
-    @phone_number.send_pin
-  end
+    @phone = PhoneNumber.find_by(phone_number: params[:phone_number])
+    unless @phone
+      @phone = PhoneNumber.create(phone_number: params[:phone_number], user_id: params[:user_id], verified: false, pin: '')
+    end
+    @phone.create_pin
+    p @phone
+    @phone.send_pin
+  end
 
-  def verify
-    @phone_number = PhoneNumber.find_by(phone_number: params[])
+  def update
+    @phone = PhoneNumber.find_by(phone_number: params[:phone_number])
+    if params[:code] == @phone.pin
+      @phone.verification
+      render json: @phone
+    else
+      render json: { error: t('phone_verification_error') }, status: :unprocessable_entity
+    end
   end
 end

@@ -5,14 +5,20 @@ class PhoneNumber < ApplicationRecord
     self.pin = rand(0000..9999).to_s.rjust(4, "0")
     save
   end
-
-  def twilio_cli
-    Twilio::REST::Client.new(ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN'])
+  
+  def verification
+    self.verified = true
+    save
   end
+  # def twilio_cli
+  #   Twilio::REST::Client.new(ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN'])
+  # end
 
   def send_pin
+    twilio_cli = Twilio::REST::Client.new(ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN'])
+
     twilio_cli.messages.create(
-      to: phone_number,
+      to: self.phone_number,
       from: ENV['TWILIO_PHONE_NUMBER'],
       body: "your PIN is #{pin}"
     )
