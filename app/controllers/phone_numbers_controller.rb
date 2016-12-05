@@ -7,7 +7,6 @@ class PhoneNumbersController < ApplicationController
       @phone = PhoneNumber.create(phone_number: params[:phone_number], user_id: params[:user_id], verified: false, pin: '')
     end
     @phone.create_pin
-    p @phone
     @phone.send_pin
   end
 
