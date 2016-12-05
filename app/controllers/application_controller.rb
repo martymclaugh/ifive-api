@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::API
   include AbstractController::Translation
+  before_action :authenticate_user_from_token!
+  respond_to :json
 
   def authenticate_user_from_token!
     auth_token = request.headers['Authorization']
