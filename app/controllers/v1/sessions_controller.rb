@@ -1,6 +1,6 @@
 module V1
   class SessionsController < ApplicationController
-
+    skip_before_action :authenticate_user_from_token!
     def create
       p params
       @phone_number = PhoneNumber.where(phone_number: params[:phone_number])[0]
