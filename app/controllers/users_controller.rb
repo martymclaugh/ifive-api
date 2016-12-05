@@ -16,7 +16,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    render json: @user
+    @phone_number = @user.phone_numbers.where(verified: true)[0]
+    render json: [@user, @phone_number]
   end
 
   private
