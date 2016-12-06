@@ -1,0 +1,2 @@
+class HighFivesController < ApplicationController
+end
