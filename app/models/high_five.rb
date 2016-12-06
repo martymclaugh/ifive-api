@@ -1,0 +1,2 @@
+class HighFive < ApplicationRecord
+end
