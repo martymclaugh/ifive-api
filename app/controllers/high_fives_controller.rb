@@ -5,7 +5,7 @@ class HighFivesController < ApplicationController
     number = number_object.national_string
     if number.length == 10
       @user = User.find(params[:user_id])
-      @high_five = HighFive.new(sender_id: params[:user_id], receiver_phone_number: '4156761348')
+      @high_five = HighFive.new(sender_id: params[:user_id], receiver_phone_number: number)
       if @high_five.save
         @phone_number = PhoneNumber.find_by(phone_number: @high_five.receiver_phone_number)
         if @phone_number && @phone_number.verified
