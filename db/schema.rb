@@ -10,18 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161202234315) do
+ActiveRecord::Schema.define(version: 20161206005753) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "high_fives", force: :cascade do |t|
+    t.integer  "sender_id"
+    t.string   "receiver_phone_number"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
   create_table "phone_numbers", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "phone_number"
+    t.string   "phone_number",                 null: false
     t.string   "pin"
-    t.boolean  "verified"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.boolean  "verified",     default: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
   create_table "users", force: :cascade do |t|

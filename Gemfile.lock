@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/sstephenson/global_phone.git
+  revision: dd0894061f58479884e6cfa2d00382542dc77d5a
+  specs:
+    global_phone (1.0.1)
+    global_phone_dbgen (1.0.1)
+      nokogiri (~> 1.5)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -159,6 +167,8 @@ DEPENDENCIES
   byebug
   devise
   dotenv-rails
+  global_phone
+  global_phone_dbgen!
   listen (~> 3.0.5)
   pg (~> 0.18)
   puma (~> 3.0)
