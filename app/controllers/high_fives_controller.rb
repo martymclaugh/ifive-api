@@ -10,12 +10,16 @@ class HighFivesController < ApplicationController
         @phone_number = PhoneNumber.find_by(phone_number: @high_five.receiver_phone_number)
         if @phone_number && @phone_number.verified
           # send push notification
+          render json: @high_five
         else
           # send text
+          render json: @high_five
         end
+      else
+        render json: {error: "Something quite unexplicable happened"}
       end
-      p @high_five
+    else
+      render json: {error: "This phone number is not in a valid format. Please check your Address Book and try again."}
     end
   end
 end
-#  HighFive.new(sender_id: 1, receiver_phone_number: '4156761348')
