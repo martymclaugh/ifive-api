@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 20161206005753) do
   create_table "high_fives", force: :cascade do |t|
     t.integer  "sender_id"
     t.string   "receiver_phone_number"
+    t.string   "receiver_name"
+    t.string   "giver_name"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
   end
