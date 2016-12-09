@@ -17,8 +17,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @phone_number = @user.phone_numbers.where(verified: true)[0]
-    @high_fives_given = HighFive.where(sender_id: @user.id).order('created_at DESC')
-    @high_fives_received = HighFive.where(receiver_phone_number: @phone_number.phone_number).order('created_at DESC')
+    @high_fives_given = HighFive.where(sender_id: @user.id).order('created_at DESC').limit(100)
+    @high_fives_received = HighFive.where(receiver_phone_number: @phone_number.phone_number).order('created_at DESC').limit(100)
     render json: [@user, @phone_number, @high_fives_given, @high_fives_received]
   end
 
