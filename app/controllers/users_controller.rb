@@ -2,7 +2,6 @@ class UsersController < ApplicationController
   skip_before_action :authenticate_user_from_token!, only: [:create]
 
   def create
-    p params
     if params[:user][:password] == params[:user][:password_confirmation]
       @user = User.new(user_params)
     else
@@ -26,6 +25,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.permit(:first_name, :last_name, :password, :email)
+    params.permit(:first_name, :last_name, :password, :email, :device_token)
   end
 end
