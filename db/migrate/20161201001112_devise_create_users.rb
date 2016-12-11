@@ -7,6 +7,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       t.string :access_token
       t.string :first_name, null: false
       t.string :last_name, null: false
+      t.string :device_token, null: false
 
       ## Recoverable
       t.string   :reset_password_token
