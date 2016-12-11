@@ -54,6 +54,8 @@ GEM
     bcrypt (3.1.11)
     builder (3.2.2)
     byebug (9.0.6)
+    commander (4.4.1)
+      highline (~> 1.7.2)
     concurrent-ruby (1.0.2)
     devise (4.2.0)
       bcrypt (~> 3.0)
@@ -69,6 +71,10 @@ GEM
     ffi (1.9.14)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
+    highline (1.7.8)
+    houston (2.2.3)
+      commander (~> 4.1)
+      json
     httparty (0.14.0)
       multi_xml (>= 0.5.2)
     i18n (0.7.0)
@@ -169,6 +175,7 @@ DEPENDENCIES
   dotenv-rails
   global_phone
   global_phone_dbgen!
+  houston
   listen (~> 3.0.5)
   pg (~> 0.18)
   puma (~> 3.0)
@@ -179,6 +186,9 @@ DEPENDENCIES
   twilio
   twilio-ruby
   tzinfo-data
+
+RUBY VERSION
+   ruby 2.3.0p0
 
 BUNDLED WITH
    1.13.6

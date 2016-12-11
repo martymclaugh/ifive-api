@@ -1,7 +1,5 @@
 class HighFivesController < ApplicationController
   def create
-    p params
-    p "*" * 100
     GlobalPhone.db_path = Rails.root.join('db/global_phone.json')
     number_object = GlobalPhone.parse(params[:phone_number])
     number = number_object.national_string
@@ -14,6 +12,17 @@ class HighFivesController < ApplicationController
           # send push notification
           render json: @high_five
         else
+          pem = File.join(Rails.root, 'certificates', 'ios_push_certificate.pem')
+          apn = Houston::Client.development
+          apn.certificate = File.read(pem)
+          token = '<287b976e6fb3a5030d8c86b9c512eb1af360364dcb85fd885a028e0d89cc06f0>'
+          notification = Houston::Notification.new(device: token)
+          notification.alert = "Hello, World!"
+          apn.push(notification)
+          p notification
+          puts "Error: #{notification.error}." if notification.error
+          p '*' * 100
+          p "HELLO"
           # send text
           render json: @high_five
         end
