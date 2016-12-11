@@ -23,9 +23,7 @@ gem 'dotenv-rails', :groups => [:development, :test]
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors', :require => 'rack/cors'
-group :development do
-  gem 'global_phone_dbgen', github: 'sstephenson/global_phone'
-end
+gem 'global_phone_dbgen', github: 'sstephenson/global_phone'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
