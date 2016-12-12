@@ -27,7 +27,7 @@ class PhoneNumber < ApplicationRecord
     twilio_cli.messages.create(
       to: self.phone_number,
       from: ENV['TWILIO_PHONE_NUMBER'],
-      body: "#{user} sent you a High Five! \u{270B} Download the iFive app to send one back: "
+      body: "#{user} sent you a High Five! \u{270B} Download the iFive app to send one back: https://itunes.apple.com/us/app/ifives/id1185367518?ls=1&mt=8"
     )
   end
 
