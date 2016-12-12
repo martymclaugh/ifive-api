@@ -7,6 +7,7 @@ gem 'active_model_serializers'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'
 # Use Puma as the app server
+gem 'faker'
 gem 'puma', '~> 3.0'
 gem 'twilio'
 gem 'twilio-ruby'
