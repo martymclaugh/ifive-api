@@ -7,7 +7,7 @@ class HighFivesController < ApplicationController
       @user = User.find(params[:user_id])
       @high_five = HighFive.new(sender_id: params[:user_id], receiver_phone_number: @number, giver_name: "#{@user.first_name} #{@user.last_name}", receiver_name: params[:friend_name])
       if @high_five.save
-        @phone_number = PhoneNumber.find_by(phone_number: @high_five.receiver_phone_number)
+        @phone_number = PhoneNumber.find_by(phone_number: '5554376972')
         # if @phone_number && @phone_number.verified
           # send push notification
           pem = File.join(Rails.root, 'certificates', 'ios_push_certificate.pem')
@@ -15,7 +15,7 @@ class HighFivesController < ApplicationController
           apn.certificate = File.read(pem)
           token = "<#{@phone_number.user.device_token}>"
           notification = Houston::Notification.new(device: token)
-          notification.alert = "#{@high_five.giver_name} sent you a Five! \u{270B}"
+          notification.alert = "Max Caldbury sent you a Five! \u{270B}"
           apn.push(notification)
           puts "Error: #{notification.error}." if notification.error
           render json: @high_five
