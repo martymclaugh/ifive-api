@@ -15,14 +15,11 @@ class HighFivesController < ApplicationController
           pem = File.join(Rails.root, 'certificates', 'ios_push_certificate.pem')
           apn = Houston::Client.development
           apn.certificate = File.read(pem)
-          token = '<287b976e6fb3a5030d8c86b9c512eb1af360364dcb85fd885a028e0d89cc06f0>'
+          token = "<#{@user.device_token}>"
           notification = Houston::Notification.new(device: token)
-          notification.alert = "Hello, World!"
+          notification.alert = "#{@high_five.giver_name} sent you a Five! \u{270B}"
           apn.push(notification)
-          p notification
           puts "Error: #{notification.error}." if notification.error
-          p '*' * 100
-          p "HELLO"
           # send text
           render json: @high_five
         end
