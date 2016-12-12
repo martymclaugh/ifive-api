@@ -17,7 +17,17 @@ class PhoneNumber < ApplicationRecord
     twilio_cli.messages.create(
       to: self.phone_number,
       from: ENV['TWILIO_PHONE_NUMBER'],
-      body: "your PIN is #{pin}"
+      body: "iFive: your PIN is #{pin}"
+    )
+  end
+
+  def send_invite(user)
+    twilio_cli = Twilio::REST::Client.new(ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN'])
+
+    twilio_cli.messages.create(
+      to: self.phone_number,
+      from: ENV['TWILIO_PHONE_NUMBER'],
+      body: "#{user} sent you a High Five! \u{270B} Download the iFive app to send one back: "
     )
   end
 
