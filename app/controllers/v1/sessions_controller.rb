@@ -5,10 +5,9 @@ module V1
     def create
       @phone_number = PhoneNumber.where(phone_number: params[:phone_number])[0]
       @user = User.find(@phone_number.user_id)
-      # uncomment for itunes release
-      # if @user.device_token != params[:device_token]
-      #   @user.update(device_token: params[:device_token])
-      # end
+      if @user.device_token != params[:device_token]
+        @user.update(device_token: params[:device_token])
+      end
       return invalid_login_attempt unless @user
       if @user.valid_password?(params[:password])
         sign_in(@user)
