@@ -15,6 +15,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    p params
     @user = User.find(params[:id])
     @phone_number = @user.phone_numbers.where(verified: true)[0]
     @high_fives_given = HighFive.where(sender_id: @user.id).order('created_at DESC')
