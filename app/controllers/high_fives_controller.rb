@@ -11,7 +11,7 @@ class HighFivesController < ApplicationController
         #uncomment for itunes release
         if @phone_number && @phone_number.verified
           # send push notification
-          pem = File.join(Rails.root, 'certificates', 'apple_push_certificate10.pem')
+          pem = File.join(Rails.root, 'certificates', 'apple_push_notification10.pem')
           apn = Houston::Client.production
           apn.certificate = File.read(pem)
           token = "<#{@phone_number.user.device_token}>"
